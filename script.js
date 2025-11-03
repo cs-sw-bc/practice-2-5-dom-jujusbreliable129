@@ -13,7 +13,9 @@
 // Goal: Randomly select "rock", "paper", or "scissors".
 // ---------------------------------------------------
 // Hints:
-//
+
+
+
 // 1️⃣ Create an array: const choices = ['rock', 'paper', 'scissors'];
 // 2️⃣ Use Math.random() to generate a random number between 0 and 1.
 // 3️⃣ Multiply it by the length of the array (3) → gives 0 to <3.
@@ -23,9 +25,13 @@
 
 function getComputerChoice() {
     // ✍️ Write your code here following the steps above
+    const choices = ["rock", "paper","scissors"];
+    let number = Math.random()
+    let total = Math.floor(number*choices.length);
+    return choices[total];
 }
 
-
+getComputerChoice();
 
 // 🧩 STEP 2: Determine Winner
 // Goal: Compare userChoice and computerChoice
@@ -41,6 +47,17 @@ function getComputerChoice() {
 
 function determineWinner(userChoice, computerChoice) {
     // ✍️ Write your comparison logic here
+    if(userChoice === computerChoice){
+     return ("It's a tie!")
+    } else if (userChoice === "rock" && computerChoice === "scissors"){
+        return ("User wins!")
+    } else if (userChoice === "paper" && computerChoice === "rock"){
+        return ("User wins!")
+    } else if (userChoice === "scissors" && computerChoice === "paper") {
+        return("User wins!")
+    } else {
+        return("Computer wins!")
+    }
 }
 
 
@@ -58,6 +75,12 @@ function determineWinner(userChoice, computerChoice) {
 
 function playGame(userChoice) {
     // ✍️ Your code here
+    let computerChoice = getComputerChoice();
+    let result = document.getElementById("result")
+    let message = determineWinner(userChoice, computerChoice);
+    result.innerHTML = `You chose: ${userChoice} ${getEmoji(userChoice)} <br> Computer chose: ${computerChoice} ${getEmoji(computerChoice)} <br> ${message}`;
+
+
 }
 
 
@@ -72,4 +95,14 @@ function playGame(userChoice) {
 
 function getEmoji(choice) {
     // ✍️ Write your switch() logic here
+switch (choice) {
+  case "rock":
+    return "🪨";
+  case "paper":
+    return "📄";
+  case "scissors":
+    return "✂️";
+  default:
+    return "❓";
+ }
 }
